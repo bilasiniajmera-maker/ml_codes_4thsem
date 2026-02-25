@@ -41,4 +41,3 @@ try:
 
 except ValueError:
     print("Invalid input! Please enter only numbers separated by spaces.")
-    
