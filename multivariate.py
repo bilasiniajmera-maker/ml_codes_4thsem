@@ -1,5 +1,4 @@
-#MULTIVARIATE REGRESSION
-# Matrix Transpose
+# Matrix transpose
 def transpose(matrix):
     rows = len(matrix)
     cols = len(matrix[0])
@@ -14,7 +13,7 @@ def transpose(matrix):
     return t
 
 
-# Matrix Multiplication
+# Matrix multiplication
 def multiply(A, B):
     result = []
 
@@ -30,7 +29,7 @@ def multiply(A, B):
     return result
 
 
-# Matrix Inverse (Only for 2x2 matrix)
+# Matrix inverse (2x2 only)
 def inverse_2x2(M):
     det = M[0][0]*M[1][1] - M[0][1]*M[1][0]
 
@@ -42,7 +41,7 @@ def inverse_2x2(M):
     return inv
 
 
-# Regression Function
+# Multivariate regression
 def multivariate_regression(X, Y):
 
     XT = transpose(X)
@@ -58,29 +57,34 @@ def multivariate_regression(X, Y):
     return B
 
 
-# ---------------- MAIN PROGRAM ----------------
+# -------- MAIN PROGRAM --------
 
 n = int(input("Enter number of data points: "))
-
-print("Enter values for x and y")
+m = int(input("Enter number of Y outputs: "))
 
 X = []
 Y = []
 
-for i in range(n):
-    x = float(input("Enter x value: "))
-    y = float(input("Enter y value: "))
+print("\nEnter values")
 
-    X.append([1, x])   # 1 for intercept
-    Y.append([y])
+for i in range(n):
+
+    x = float(input(f"Enter x value for row {i+1}: "))
+
+    X.append([1, x])   # intercept added
+
+    y_row = []
+
+    for j in range(m):
+        y = float(input(f"Enter y{j+1} value: "))
+        y_row.append(y)
+
+    Y.append(y_row)
 
 
 coeff = multivariate_regression(X, Y)
 
 print("\nRegression Coefficients")
-print("b0 =", coeff[0][0])
-print("b1 =", coeff[1][0])
 
-
-print("\nRegression Equation:")
-print("y =", coeff[0][0], "+", coeff[1][0], "* x")
+for row in coeff:
+    print(row)
