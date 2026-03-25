@@ -56,3 +56,6 @@ else:
     else:
         print("\nReduced Matrix Data:")
         print(X_reduced)
+
+
+        
